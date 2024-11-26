@@ -1,0 +1,26 @@
+### insert new blog into database test
+POST http://localhost:8082/api/blog/new
+Content-Type: application/json
+
+{
+  "title": "我的第一篇博客",
+  "content": "这是博客的内容。",
+  "categoryId": 1,
+  "tags": ["技术", "Java"]
+}
+
+### get all blogs test
+GET http://localhost:8082/api/blog/all?page=1&size=10
+
+### update blog test
+PUT http://localhost:8082/api/blog/2
+Content-Type: application/json
+
+{
+  "title": "更新后的博客标题",
+  "content": "更新后的博客内容。",
+  "categoryId": 2
+}
+
+### soft delete blog
+DELETE http://localhost:8082/api/blog/1

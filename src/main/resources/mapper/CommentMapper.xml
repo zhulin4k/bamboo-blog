@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artemis.blog.mapper.CommentMapper">
+    <resultMap id="commentResultMap" type="com.artemis.blog.entity.Comment" >
+        <id property="id" column="id" />
+        <result property="blogId" column="content" />
+        <result property="userId" column="post_id" />
+        <result property="content" column="user_id" />
+        <result property="createTime" column="create_time" />
+        <result property="parentId" column="parent_id" />
+    </resultMap>
+
+    <insert id="insertComment" parameterType="com.artemis.blog.entity.Comment" >
+        INSERT INTO comments (blog_id, user_id, content, create_time, parent_id)
+        VALUES (#{blogId}, #{userId}, #{content}, #{createTime}, #{parentId})
+    </insert>
+
+    <select id="findCommentsByBlogId" resultMap="commentResultMap" >
+        SELECT * FROM comments
+        WHERE blog_id = #{blogId}
+    </select>
+
+    <delete id="deleteCommentById" parameterType="com.artemis.blog.entity.Comment" >
+        DELETE FROM comments
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

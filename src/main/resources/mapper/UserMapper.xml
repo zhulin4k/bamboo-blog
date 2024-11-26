@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artemis.blog.mapper.UserMapper">
+    <resultMap id="userResultMap" type="com.artemis.blog.entity.User">
+        <id property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="avatar" column="avatar" />
+        <result property="createTime" column="create_time" />
+        <result property="extra" column="extra" />
+    </resultMap>
+
+    <insert id="insertUser" parameterType="com.artemis.blog.entity.User">
+        INSERT INTO users (username, password, email, phone, avatar, create_time)
+        VALUES (#{username}, #{password}, #{email}, #{phone}, #{avatar}, NOW())
+    </insert>
+
+    <select id="findByUsername" parameterType="String" resultType="com.artemis.blog.entity.User">
+        SELECT * FROM users WHERE username = #{username}
+    </select>
+
+</mapper>

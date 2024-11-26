@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artemis.blog.mapper.BlogMapper">
+    <resultMap id="blogResultMap" type="com.artemis.blog.entity.Blog">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id" />
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="extra" column="extra" />
+    </resultMap>
+
+    <select id="findAllBlogs" resultMap="blogResultMap" >
+        SELECT * FROM blogs
+        WHERE is_deleted = 0
+        ORDER BY create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <insert id="insertBlog">
+        INSERT INTO blogs (user_id, title, content, category_id, create_time, modified_time)
+        VALUES (#{userId}, #{title}, #{content}, #{categoryId}, NOW(), NOW())
+    </insert>
+
+    <select id="findBlogById" resultMap="blogResultMap" >
+        SELECT id, user_id, title, content, category_id, create_time, modified_time
+        FROM blogs
+        WHERE id = #{id} AND is_deleted = 0
+    </select>
+
+    <update id="updateBlog" parameterType="com.artemis.blog.entity.Blog">
+        UPDATE blogs
+        <set>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+        </set>
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+
+
+    <!-- 软删除博客 -->
+    <update id="deleteBlogById" parameterType="com.artemis.blog.entity.Blog">
+        UPDATE blogs
+        SET is_deleted = 1
+        WHERE id = #{id}
+    </update>
+
+</mapper>

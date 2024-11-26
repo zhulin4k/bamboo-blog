@@ -1,0 +1,19 @@
+### POST request to register
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "username": "testUser",
+  "password": "testPassword",
+  "email": "test@example.com",
+  "phone": "19827659876"
+}
+
+### POST request to register with invalid email
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+"username": "testUser",
+"password": "testPassword"
+}
