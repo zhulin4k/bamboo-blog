@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.MockUtil;
 
 import java.util.List;
 
@@ -74,18 +73,18 @@ public class CommentServiceTest {
 
     // 测试根据博客ID显示评论时ID有效
     @Test
-    void testShowAllCommentsByBlogId_ValidId() {
+    void testGetAllCommentsByBlogId_ValidId() {
         long blogId = 1L;
         when(commentMapper.findCommentsByBlogId(blogId)).thenReturn(List.of(new Comment()));
 
-        List<Comment> comments = commentService.showAllCommentsByBlogId(blogId);
+        List<Comment> comments = commentService.getAllCommentsByBlogId(blogId);
         assertNotNull(comments); // 预期返回非空列表
     }
 
     // 测试根据博客ID显示评论时ID为负值
     @Test
-    void testShowAllCommentsByBlogId_NegativeId() {
-        List<Comment> comments = commentService.showAllCommentsByBlogId(-1L);
+    void testGetAllCommentsByBlogId_NegativeId() {
+        List<Comment> comments = commentService.getAllCommentsByBlogId(-1L);
         assertNull(comments); // 预期返回值为null
     }
 

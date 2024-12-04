@@ -1,0 +1,15 @@
+### add comment request
+POST http://localhost:8082/api/comment/add
+Content-Type: application/json
+
+{
+  "blogId": 1,
+  "content": "这是一条新的评论。",
+  "author": "用户昵称"
+}
+
+### get all comments request
+GET http://localhost:8082/api/comment/all/1
+
+### delete comment
+GET http://localhost:8082/api/comment/delete/1

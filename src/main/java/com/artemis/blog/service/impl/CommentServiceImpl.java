@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> showAllCommentsByBlogId(long blogId) {
+    public List<Comment> getAllCommentsByBlogId(long blogId) {
         if (blogId < 0) {
             return null;
         }

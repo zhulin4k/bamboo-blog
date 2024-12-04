@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 public class Result<T> implements Serializable {
     @JsonProperty("code")
-    private String code;
+    private int code;
 
     @JsonProperty("msg")
     private String message;

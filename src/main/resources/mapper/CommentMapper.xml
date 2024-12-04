@@ -3,9 +3,9 @@
 <mapper namespace="com.artemis.blog.mapper.CommentMapper">
     <resultMap id="commentResultMap" type="com.artemis.blog.entity.Comment" >
         <id property="id" column="id" />
-        <result property="blogId" column="content" />
-        <result property="userId" column="post_id" />
-        <result property="content" column="user_id" />
+        <result property="blogId" column="blog_id" />
+        <result property="userId" column="user_id" />
+        <result property="content" column="content" />
         <result property="createTime" column="create_time" />
         <result property="parentId" column="parent_id" />
     </resultMap>
