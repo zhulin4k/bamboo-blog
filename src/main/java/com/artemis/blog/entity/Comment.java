@@ -2,6 +2,8 @@ package com.artemis.blog.entity;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * @Author: 俞周凯
  * @CreateTime: 2024-11-24
@@ -9,10 +11,10 @@ import lombok.Data;
  */
 @Data
 public class Comment {
-    private String id;
-    private String blogId;
-    private String userId;
+    private long id;
+    private long blogId;
+    private long userId;
     private String content;
-    private String createTime;
-    private String parentId;
+    private LocalDateTime createTime;
+    private long parentId;
 }
